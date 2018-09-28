@@ -1,0 +1,38 @@
+server:
+  port: 8072
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://localhost:8070/eureka/
+mybatis:
+  config-location: classpath:/mybatis-config.xml
+spring:
+  application:
+    name: music-client
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/music-story?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123456
+      initial-size: 5
+      min-idle: 10
+      max-active: 50
+      max-wait: 1800
+      time-between-eviction-runs-millis: 300
+      test-on-borrow: false
+  cloud:
+    config:
+      name: config
+      profile: dev
+      uri: http://localhost:8073
+      label: master
+# 打开/refresh端口 
+# curl -X POST "http://10.236.160.243:8072/actuator/refresh"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    
+  
